@@ -28,11 +28,8 @@ public class Schedule {
         this.password = password;
     }
 
-    public void updateSchedule() {
+    public void updateSchedule(String title, String userName) {
         this.title = title;
-        this.content = content;
         this.userName = userName;
-        this.password = password;
     }
-
 }
