@@ -2,6 +2,7 @@ package com.schedule.service;
 
 import com.schedule.dto.CreateScheduleRequest;
 import com.schedule.dto.CreateScheduleResponse;
+import com.schedule.dto.GetScheduleResponse;
 import com.schedule.entity.Schedule;
 import com.schedule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +27,20 @@ public class ScheduleService {
                 savedSchedule.getId(),
                 savedSchedule.getTitle(),
                 savedSchedule.getContent(),
-                savedSchedule.getUserName(),
-                savedSchedule.getPassword()
+                savedSchedule.getUserName()
+        );
+    }
+
+    @Transactional(readOnly = true)
+    public GetScheduleResponse getOne(Long scheduleId) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
+                () -> new IllegalStateException("해당 일정이 없습니다")
+        );
+        return new GetScheduleResponse(
+                schedule.getId(),
+                schedule.getTitle(),
+                schedule.getContent(),
+                schedule.getUserName()
         );
     }
 }
