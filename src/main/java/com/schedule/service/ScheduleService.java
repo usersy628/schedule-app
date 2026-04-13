@@ -50,8 +50,13 @@ public class ScheduleService {
     }
 
     @Transactional(readOnly = true)
-    public List<GetScheduleResponse> getAll() {
-        List<Schedule> schedules = scheduleRepository.findAll();
+    public List<GetScheduleResponse> getAll(String userName) {
+        List<Schedule> schedules;
+        if (userName == null || userName.isBlank()) {
+            schedules = scheduleRepository.findAllByOrderByModifiedAtDesc();
+        } else {
+            schedules = scheduleRepository.findByUserNameOrderByModifiedAtDesc(userName);
+        }
         List<GetScheduleResponse> dtos = new ArrayList<>();
         for (Schedule schedule : schedules) {
             GetScheduleResponse dto = new GetScheduleResponse(
