@@ -28,7 +28,9 @@ public class ScheduleService {
                 savedSchedule.getId(),
                 savedSchedule.getTitle(),
                 savedSchedule.getContent(),
-                savedSchedule.getUserName()
+                savedSchedule.getUserName(),
+                savedSchedule.getCreatedAt(),
+                savedSchedule.getModifiedAt()
         );
     }
 
@@ -41,7 +43,9 @@ public class ScheduleService {
                 schedule.getId(),
                 schedule.getTitle(),
                 schedule.getContent(),
-                schedule.getUserName()
+                schedule.getUserName(),
+                schedule.getCreatedAt(),
+                schedule.getModifiedAt()
         );
     }
 
@@ -54,7 +58,9 @@ public class ScheduleService {
                     schedule.getId(),
                     schedule.getTitle(),
                     schedule.getContent(),
-                    schedule.getUserName()
+                    schedule.getUserName(),
+                    schedule.getCreatedAt(),
+                    schedule.getModifiedAt()
             );
             dtos.add(dto);
         }
@@ -82,7 +88,9 @@ public class ScheduleService {
                 schedule.getId(),
                 schedule.getTitle(),
                 schedule.getContent(),
-                schedule.getUserName()
+                schedule.getUserName(),
+                schedule.getCreatedAt(),
+                schedule.getModifiedAt()
         );
     }
 
