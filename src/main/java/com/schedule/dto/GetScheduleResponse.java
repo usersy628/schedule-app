@@ -8,6 +8,7 @@ public class GetScheduleResponse {
     private final String title;
     private final String content;
     private final String userName;
+    private String password;
 
     public GetScheduleResponse(Long id, String title, String content, String userName) {
         this.id = id;

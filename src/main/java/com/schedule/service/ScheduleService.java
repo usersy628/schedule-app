@@ -66,7 +66,6 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                 () -> new IllegalStateException("해당 일정이 없습니다")
         );
-
         try {
             if (!schedule.getPassword().equals(request.getPassword())) {
                 throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
@@ -75,7 +74,7 @@ public class ScheduleService {
                     request.getTitle(),
                     request.getUserName()
             );
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             throw new IllegalStateException(e.getMessage());
         }
 
@@ -85,5 +84,18 @@ public class ScheduleService {
                 schedule.getContent(),
                 schedule.getUserName()
         );
+    }
+
+    @Transactional
+    public void delete(Long scheduleId, String password) {
+            boolean existence = scheduleRepository.existsById(scheduleId);
+            if (!existence) {
+                throw new IllegalStateException("해당 일정이 존재하지 않습니다.");
+            }
+            if (!scheduleRepository.getOne(scheduleId).getPassword().equals(password)) {
+                throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
+            }
+            System.out.println("scheduleRepository.deleteById(scheduleId)");
+            scheduleRepository.deleteById(scheduleId);
     }
 }
